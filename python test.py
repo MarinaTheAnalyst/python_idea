@@ -18,15 +18,15 @@ import pandas as pd
 # plt.legend(["this is y", "this is z"])
 # plt.show()
 
-sample_data = pd.read_csv('sample_data.csv')
-print(sample_data.head())
-print(type(sample_data))
-print(sample_data.column_c.iloc[2])
-
-plt.plot(sample_data.column_a, sample_data.column_b)
-plt.plot(sample_data.column_a, sample_data.column_c, 'o')
-plt.show()
-
+# sample_data = pd.read_csv('sample_data.csv')
+# print(sample_data.head())
+# print(type(sample_data))
+# print(sample_data.column_c.iloc[2])
+#
+# plt.plot(sample_data.column_a, sample_data.column_b)
+# plt.plot(sample_data.column_a, sample_data.column_c, 'o')
+# plt.show()
+#
 countries = pd.read_csv('countries.csv')
 print(countries)
 
@@ -39,9 +39,24 @@ print(countries.country.unique())
 uk = countries[countries.country == 'United Kingdom']
 print(uk)
 
-plt.plot(us.year, us.population / 10**6)
-plt.plot(uk.year, uk.population / 10**6)
+# plt.plot(us.year, us.population / 10**6)
+# plt.plot(uk.year, uk.population / 10**6)
+# plt.legend(['us', 'uk'])
+# plt.xlabel('year')
+# plt.ylabel('population')
+# plt.show()
+
+
+a = us.population.iloc[0]
+b = us.population
+calc_per = b/a*100
+print(calc_per)
+
+c = uk.population.iloc[0]
+
+plt.plot(us.year, us.population / a * 100)
+plt.plot(uk.year, uk.population / c * 100)
 plt.legend(['us', 'uk'])
 plt.xlabel('year')
-plt.ylabel('population')
+plt.ylabel('population growth (first year)')
 plt.show()
