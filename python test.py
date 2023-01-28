@@ -30,7 +30,18 @@ plt.show()
 countries = pd.read_csv('countries.csv')
 print(countries)
 
-#Compare the population growth in the US and China
+#Compare the population growth in the US and United Kingdom
 
 us = countries[countries.country == 'United States']
 print(us)
+print(countries.country.unique())
+
+uk = countries[countries.country == 'United Kingdom']
+print(uk)
+
+plt.plot(us.year, us.population / 10**6)
+plt.plot(uk.year, uk.population / 10**6)
+plt.legend(['us', 'uk'])
+plt.xlabel('year')
+plt.ylabel('population')
+plt.show()
