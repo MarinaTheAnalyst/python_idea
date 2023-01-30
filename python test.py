@@ -69,13 +69,32 @@ print(poke.tail(10))
 print(poke.columns)
 print(poke['Name'][0:11])
 print(poke[['Name', 'Type 1', 'Type 2']])
-# print(poke.iloc[3,1])
+print(poke.iloc[3,1])
 
 #  iteration through each row by taking all parameteres
 # for index,row in poke.iterrows():
 #     print(index,row)
 
 #  iteration through specified parameter
-for index,row in poke.iterrows():
-    print(index,row['Type 1'])
+# for index,row in poke.iterrows():
+#     print(index,row['Type 1'])
+#
+# print(poke.loc[poke['Type 1']=="Ground"]) # where clause in sql
+#
+# print(poke.describe())
+#
+# print(poke.sort_values('Type 1', ascending=False)) # desc as in sql
+# print(poke.sort_values(['Type 1', 'Name'], ascending=[1,0]))
+
+# Starting to amend the data
+
+# poke['Total'] = poke['HP'] + poke['Attack'] + poke['Defense'] + poke['Sp. Def'] + poke['Sp. Atk'] + poke['Speed']
+
+# print(poke.head(10))
+# poke = poke.drop(columns='Total')
+
+
+poke['Total'] = poke.iloc[:, 4:10].sum(axis=1) #another way to sum the values , axis =1 means it would add horizontally values , for vertically use axis = 0
+print(poke.head(5))
+
 
