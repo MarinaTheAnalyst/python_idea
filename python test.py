@@ -97,4 +97,10 @@ print(poke.iloc[3,1])
 poke['Total'] = poke.iloc[:, 4:10].sum(axis=1) #another way to sum the values , axis =1 means it would add horizontally values , for vertically use axis = 0
 print(poke.head(5))
 
+colms = list(poke.columns)
+poke = poke[colms[0:4] + [colms[-1]] + colms[4:12]]
+
+print(poke.head(10))
+
+poke.to_csv('modified_pokemon.csv')
 
