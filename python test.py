@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
+
 # data = (3, 6, 9, 12)
 # fig, simple_chart = plt.subplots()
 # simple_chart.plot(data)
@@ -27,17 +28,17 @@ import pandas as pd
 # plt.plot(sample_data.column_a, sample_data.column_c, 'o')
 # plt.show()
 #
-countries = pd.read_csv('countries.csv')
-print(countries)
+# countries = pd.read_csv('countries.csv')
+# print(countries)
 
 #Compare the population growth in the US and United Kingdom
 
-us = countries[countries.country == 'United States']
-print(us)
-print(countries.country.unique())
-
-uk = countries[countries.country == 'United Kingdom']
-print(uk)
+# us = countries[countries.country == 'United States']
+# print(us)
+# print(countries.country.unique())
+#
+# uk = countries[countries.country == 'United Kingdom']
+# print(uk)
 
 # plt.plot(us.year, us.population / 10**6)
 # plt.plot(uk.year, uk.population / 10**6)
@@ -47,16 +48,34 @@ print(uk)
 # plt.show()
 
 
-a = us.population.iloc[0]
-b = us.population
-calc_per = b/a*100
-print(calc_per)
+# a = us.population.iloc[0]
+# b = us.population
+# calc_per = b/a*100
+# print(calc_per)
+#c = uk.population.iloc[0]
+#
+# plt.plot(us.year, us.population / a * 100)
+# plt.plot(uk.year, uk.population / c * 100)
+# plt.legend(['us', 'uk'])
+# plt.xlabel('year')
+# plt.ylabel('population growth (first year)')
+# plt.show()
 
-c = uk.population.iloc[0]
 
-plt.plot(us.year, us.population / a * 100)
-plt.plot(uk.year, uk.population / c * 100)
-plt.legend(['us', 'uk'])
-plt.xlabel('year')
-plt.ylabel('population growth (first year)')
-plt.show()
+# Data Pokemon
+poke = pd.read_csv('pokemon_data.csv')
+print(poke.head(5))
+print(poke.tail(10))
+print(poke.columns)
+print(poke['Name'][0:11])
+print(poke[['Name', 'Type 1', 'Type 2']])
+# print(poke.iloc[3,1])
+
+#  iteration through each row by taking all parameteres
+# for index,row in poke.iterrows():
+#     print(index,row)
+
+#  iteration through specified parameter
+for index,row in poke.iterrows():
+    print(index,row['Type 1'])
+
