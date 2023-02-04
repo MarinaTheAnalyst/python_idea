@@ -102,5 +102,51 @@ poke = poke[colms[0:4] + [colms[-1]] + colms[4:12]]
 
 print(poke.head(10))
 
-poke.to_csv('modified_pokemon.csv')
+poke.to_csv('modified_pokemon.csv', index = False)
 
+# More filtering --------
+
+new_df = poke.loc[(poke['Type 1'] == 'Grass' ) | (poke['Type 2'] == 'Poison')] # or = | and = &
+
+print(new_df)
+new_df.to_csv('filtered.csv', index = False)
+print(poke.loc[poke['Name'].str.contains ('Mega')])
+print(poke.loc[~poke['Name'].str.contains('Mega')]) # ~ --> not equal as an ex
+
+import re # regular expressions as an ex. or symmbol in str.contains
+
+# print(poke.loc[poke['Type 1'].str.contains('Fire|Grass', regex=True)]) # python is case sensitive what we can add is flags=re.I
+
+print(poke.loc[poke['Type 1'].str.contains('Fire|Grass', flags=re.I, regex=True)])
+
+print(poke.loc[poke['Name'].str.contains('^pi[a-z]*', flags=re.I, regex=True)]) # ^ --> this weed out pi in the mid and [a-z]* everything that comes after
+
+# Conditional Changes
+
+poke.loc[poke['Type 1'] == 'Fire', 'Type 1'] = 'Flamer'
+print(poke)
+
+poke.loc[poke['Total'] > 600, 'Legendary'] = 'CHECK'
+print(poke)
+
+ # AGGREGATE STATISTICS (GROUP BY)
+poke = pd.read_csv('pokemon_data.csv')
+print(poke)
+average = poke.groupby(['Type 1']).mean()
+print(average)
+
+sorting = poke.groupby(['Type 1']).mean().sort_values('Speed', ascending=False) # instead of mean we can use sum() or count()
+print(sorting)
+
+counting = poke.groupby(['Type 1']).count()
+print(counting)
+
+poke['count'] = 1
+
+counting_ = poke.groupby(['Type 1', 'Type 2']).count()['count']
+print(counting_)
+
+# WORKING WITH A LARGE DATASET
+for df in pd.read_csv('pokemon_data.csv', chunksize=10): #downsize it to 10 rows
+    print("CHUNK")
+    print(df)
